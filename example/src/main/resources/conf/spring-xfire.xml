@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<import resource="classpath:org/codehaus/xfire/spring/xfire.xml" />
+	<bean id="baseWebService" class="org.codehaus.xfire.spring.remoting.XFireExporter"
+		lazy-init="false" abstract="true">
+		<property name="serviceFactory" ref="xfire.serviceFactory" />
+		<property name="xfire" ref="xfire" />
+	</bean>
+	<bean id="bookWS"
+		class="cn.springmvc.service.impl.UserServiceImpl">
+	</bean>
+	<bean id="bookService" parent="baseWebService">
+		<property name="serviceBean" ref="bookWS" />
+		<property name="serviceClass"
+			value="cn.springmvc.service.UserService" />
+	</bean>
+</beans>
